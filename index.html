@@ -1115,6 +1115,30 @@
       font-size: 0.95rem;
       color: var(--ink-soft);
     }
+    .ticket-itinerary {
+      list-style: none;
+      margin: 1rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.45rem;
+    }
+    .ticket-itinerary li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+      line-height: 1.35;
+      color: var(--velvet-mid);
+    }
+    .ticket-itinerary li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f9a8d4, #db2777);
+    }
     .ticket-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1721,7 +1745,7 @@
     <section class="section section--wide" aria-labelledby="regalo-title">
       <p class="section-kicker reveal">Il momento è arrivato</p>
       <h2 class="section-title reveal" id="regalo-title">Il tuo regalo</h2>
-      <p class="tickets-note reveal">Un solo biglietto, una destinazione speciale. Toccalo per scoprire dove andiamo.</p>
+      <p class="tickets-note reveal">Il tuo biglietto per Napoli: sapori, Comicon e una città da esplorare insieme. Toccalo per aprirlo.</p>
       <div class="tickets reveal" id="tickets">
         <button type="button" class="ticket" id="ticket-unico" aria-label="Apri il tuo biglietto regalo">
           <span class="ticket-foil" aria-hidden="true"></span>
@@ -1731,8 +1755,14 @@
           </div>
           <div class="ticket-body">
             <div class="ticket-label">Biglietto per due</div>
-            <div class="ticket-title">Destinazione misteriosa</div>
-            <div class="ticket-meta">Valido per noi · Amore incluso</div>
+            <div class="ticket-title">Napoli, con te</div>
+            <div class="ticket-meta">Il nostro weekend · Amore incluso</div>
+            <ul class="ticket-itinerary">
+              <li>Giro enogastronomico per Napoli</li>
+              <li>Napoli Comicon insieme</li>
+              <li>Giornata a esplorare tutta la città</li>
+              <li>Tanto divertimento, solo noi due</li>
+            </ul>
             <div class="ticket-row">
               <div class="ticket-field">
                 <span>Passeggeri</span>
@@ -1741,14 +1771,6 @@
               <div class="ticket-field">
                 <span>Classe</span>
                 <strong>Forever</strong>
-              </div>
-              <div class="ticket-field">
-                <span>Partenza</span>
-                <strong>Dal cuore</strong>
-              </div>
-              <div class="ticket-field">
-                <span>Arrivo</span>
-                <strong>???</strong>
               </div>
             </div>
             <div class="ticket-stub">
@@ -1807,20 +1829,20 @@
       ],
       destinazione: {
         citta: "Napoli",
-        evento: "Napoli Comicon",
+        evento: "Napoli Comicon + giro enogastronomico",
         dataEvento: "[DA INSERIRE]",
         paragrafi: [
-          "Ti porto a Napoli, al Comicon, insieme a te. Un anno di noi, e il prossimo sarà ancora più bello.",
-          "Voglio regalarti giorni pieni di luci, cosplay, risate e quella magia che solo le fiere sanno creare — e che con te diventa ancora più speciale.",
-          "Cammineremo tra i padiglioni, faremo mille foto, mangeremo qualcosa di buono e torneremo a casa con nuovi ricordi da aggiungere alla nostra storia.",
+          "Ti porto a Napoli per vivere insieme un regalo pieno di sapori, strade e risate. Un anno di noi, e il prossimo capitolo lo scriviamo tra pizza, luci e Comicon.",
+          "Partiamo con un giro enogastronomico per la città: assaggi, posti tipici e quella fame di Napoli che si condivide solo se sei con la persona giusta.",
+          "Poi c'è il Comicon: padiglioni, cosplay, stand e la magia delle fiere — e dopo (o tra una risata e l'altra) una giornata intera a esplorare tutta Napoli insieme, senza fretta, con tanto divertimento.",
         ],
         perks: [
-          "Viaggio insieme a Napoli",
-          "Ingresso al Napoli Comicon",
-          "Giornate di stand, artisti e sorprese",
-          "Tempo solo nostro, senza fretta",
+          "Giro enogastronomico per Napoli",
+          "Napoli Comicon insieme",
+          "Giornata a esplorare tutta la città",
+          "Tanto divertimento, solo noi due",
         ],
-        chiusura: "Ti amo, Boba. Questo è solo l'inizio del prossimo capitolo.",
+        chiusura: "Ti amo, Boba. Napoli ci aspetta — e io non vedo l'ora di viverla con te.",
       },
       // Foto in assets/ — se un file manca, compare un placeholder elegante
       foto: {
