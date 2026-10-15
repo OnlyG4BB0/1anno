@@ -688,16 +688,50 @@
     .lightbox-close svg { width: 1.15rem; height: 1.15rem; }
 
     .letter {
+      --letter-line: 1.85rem;
       position: relative;
       z-index: 2;
-      background: var(--paper);
-      border-radius: 0.35rem;
-      padding: 2.4rem 1.6rem 2.6rem;
+      isolation: isolate;
+      border-radius: 0.2rem;
+      padding: 2.5rem 1.55rem 2.7rem 1.85rem;
       min-height: 18rem;
+      color: var(--ink);
+      background-color: #f4e8d4;
+      background-image:
+        /* margine sinistro da cancelleria */
+        linear-gradient(
+          90deg,
+          transparent 1.35rem,
+          rgba(196, 90, 110, 0.22) 1.35rem,
+          rgba(196, 90, 110, 0.22) calc(1.35rem + 1px),
+          transparent calc(1.35rem + 1px)
+        ),
+        /* righe leggere */
+        repeating-linear-gradient(
+          transparent 0,
+          transparent calc(var(--letter-line) - 1px),
+          rgba(160, 120, 80, 0.11) calc(var(--letter-line) - 1px),
+          rgba(160, 120, 80, 0.11) var(--letter-line)
+        ),
+        /* fibra / grain della carta */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E"),
+        /* tono crema invecchiato */
+        linear-gradient(
+          168deg,
+          #fffaf0 0%,
+          #f6ead6 42%,
+          #efdfc4 78%,
+          #e8d4b4 100%
+        );
+      background-size: auto, auto, 180px 180px, auto;
+      background-blend-mode: normal, normal, soft-light, normal;
       box-shadow:
-        0 1px 0 rgba(255,255,255,0.8) inset,
-        0 12px 40px rgba(80, 20, 40, 0.12);
-      background-image: none;
+        0 1px 0 rgba(255, 252, 245, 0.75) inset,
+        0 0 0 1px rgba(140, 100, 60, 0.14),
+        0 14px 36px rgba(80, 20, 40, 0.14),
+        3px 4px 0 #e8dcc6,
+        6px 8px 0 #dccfb0,
+        6px 8px 18px rgba(80, 40, 20, 0.08);
       transform: translateY(0.5rem) scale(0.97);
       transition: transform 1s var(--ease-out);
     }
@@ -705,22 +739,46 @@
       transform: translateY(-0.35rem) scale(1);
     }
 
+    /* macchie, angoli e vignetta “carta usata” */
+    .letter::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 45% at 8% 6%, rgba(170, 120, 70, 0.16), transparent 58%),
+        radial-gradient(ellipse 55% 40% at 96% 97%, rgba(150, 95, 55, 0.14), transparent 55%),
+        radial-gradient(ellipse 50% 35% at 92% 8%, rgba(190, 140, 80, 0.1), transparent 50%),
+        radial-gradient(ellipse 40% 30% at 12% 88%, rgba(160, 110, 70, 0.1), transparent 50%),
+        radial-gradient(ellipse 95% 90% at 50% 48%, transparent 58%, rgba(110, 75, 40, 0.1) 100%);
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+    }
+
     .letter::after {
       content: "";
       position: absolute;
-      top: 0; left: 10%; right: 10%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.55;
+      top: 0.85rem;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      z-index: 1;
+      background: linear-gradient(90deg, transparent, rgba(180, 130, 60, 0.55), transparent);
+      opacity: 0.7;
+      pointer-events: none;
     }
 
     .letter p {
+      position: relative;
+      z-index: 1;
       font-family: var(--font-display);
       font-style: italic;
       font-size: clamp(1.05rem, 3.4vw, 1.22rem);
-      line-height: 1.8;
+      line-height: var(--letter-line);
       color: var(--ink);
-      margin-bottom: 1rem;
+      margin-bottom: var(--letter-line);
       /* Visibili di default: la lettera lunga non deve dipendere dall'observer */
       opacity: 1;
       transform: translateY(0);
@@ -1456,13 +1514,12 @@
         padding: 1rem 0.7rem 0.7rem;
       }
       .letter {
-        padding: 1.5rem 1.05rem 1.75rem;
+        --letter-line: 1.72rem;
+        padding: 1.65rem 1.05rem 1.9rem 1.35rem;
         min-height: 0;
       }
       .letter p {
         font-size: 1.02rem;
-        line-height: 1.72;
-        margin-bottom: 0.9rem;
       }
       .wax-seal {
         width: 3.2rem;
@@ -1766,7 +1823,7 @@
             <div class="ticket-row">
               <div class="ticket-field">
                 <span>Passeggeri</span>
-                <strong>Gabry &amp; Boba</strong>
+                <strong>pupo &amp; boba</strong>
               </div>
               <div class="ticket-field">
                 <span>Classe</span>
