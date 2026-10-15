@@ -1361,13 +1361,6 @@
       color: var(--gold-bright);
       letter-spacing: 0.04em;
     }
-    .reveal-date {
-      margin-top: 0.65rem;
-      font-size: 0.95rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255, 244, 234, 0.55);
-    }
     .reveal-copy {
       margin: 1.75rem auto 0;
       max-width: 32rem;
@@ -1849,7 +1842,6 @@
       </div>
       <h2 class="reveal-city" id="citta-title"></h2>
       <p class="reveal-event" id="evento-title"></p>
-      <p class="reveal-date" id="evento-data"></p>
       <div class="reveal-copy" id="evento-copy"></div>
       <ul class="reveal-perks" id="evento-perks"></ul>
       <p class="reveal-love" id="evento-amore"></p>
@@ -1887,7 +1879,6 @@
       destinazione: {
         citta: "Napoli",
         evento: "Napoli Comicon + giro enogastronomico",
-        dataEvento: "[DA INSERIRE]",
         paragrafi: [
           "Ti porto a Napoli per vivere insieme un regalo pieno di sapori, strade e risate. Un anno di noi, e il prossimo capitolo lo scriviamo tra pizza, luci e Comicon.",
           "Partiamo con un giro enogastronomico per la città: assaggi, posti tipici e quella fame di Napoli che si condivide solo se sei con la persona giusta.",
@@ -2103,7 +2094,6 @@
       const d = CONFIG.destinazione;
       document.getElementById("citta-title").textContent = d.citta;
       document.getElementById("evento-title").textContent = d.evento;
-      document.getElementById("evento-data").textContent = d.dataEvento;
       document.getElementById("evento-amore").textContent =
         d.chiusura || ("Ti amo, " + CONFIG.nomeLei);
 
