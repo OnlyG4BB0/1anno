@@ -123,60 +123,79 @@
     /* Progress laterale */
     .progress {
       position: fixed;
-      right: 0.85rem;
+      right: 0.75rem;
       top: 50%;
       transform: translateY(-50%);
       z-index: 800;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
-      padding: 0.5rem;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.7rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(58, 21, 32, 0.55);
+      border: 1px solid rgba(255, 250, 246, 0.28);
+      box-shadow: 0 10px 28px rgba(20, 8, 12, 0.28);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .progress button {
-      width: 0.45rem;
-      height: 0.45rem;
+      width: 0.55rem;
+      height: 0.55rem;
       border-radius: 999px;
-      background: rgba(255, 250, 246, 0.28);
-      transition: height 0.35s var(--ease-out), background 0.35s, transform 0.35s;
+      background: rgba(255, 250, 246, 0.55);
+      border: 1px solid rgba(255, 250, 246, 0.75);
+      box-shadow: 0 0 0 1px rgba(58, 21, 32, 0.15);
+      transition: height 0.3s var(--ease-out), background 0.25s, transform 0.25s, box-shadow 0.25s;
       position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .progress button:hover,
+    .progress button:focus-visible {
+      background: #fffaf6;
+      transform: scale(1.15);
+      outline: none;
     }
     .progress button.is-active {
-      height: 1.35rem;
-      background: var(--blush);
-      box-shadow: 0 0 12px rgba(240, 168, 184, 0.55);
+      height: 1.45rem;
+      background: linear-gradient(180deg, #f9a8d4, #db2777);
+      border-color: rgba(255, 250, 246, 0.9);
+      box-shadow: 0 0 14px rgba(244, 114, 182, 0.75);
     }
     .progress button::after {
       content: attr(data-label);
       position: absolute;
-      right: 1.1rem;
+      right: 1.25rem;
       top: 50%;
       transform: translateY(-50%);
       white-space: nowrap;
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--white);
-      background: rgba(58, 21, 32, 0.75);
-      padding: 0.25rem 0.5rem;
+      color: #fffaf6;
+      background: rgba(58, 21, 32, 0.88);
+      padding: 0.3rem 0.55rem;
       border-radius: 999px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s;
-      backdrop-filter: blur(6px);
+      transition: opacity 0.2s;
+      border: 1px solid rgba(255, 250, 246, 0.2);
     }
     .progress button:hover::after,
     .progress button:focus-visible::after { opacity: 1; }
     @media (max-width: 700px) {
       .progress {
-        right: max(0.35rem, env(safe-area-inset-right, 0px));
+        right: max(0.3rem, env(safe-area-inset-right, 0px));
         gap: 0.45rem;
-        padding: 0.35rem;
+        padding: 0.55rem 0.35rem;
+        background: rgba(58, 21, 32, 0.62);
       }
       .progress button {
-        width: 0.38rem;
-        height: 0.38rem;
+        width: 0.48rem;
+        height: 0.48rem;
       }
-      .progress button.is-active { height: 1.1rem; }
+      .progress button.is-active { height: 1.2rem; }
       .progress button::after { display: none; }
     }
 
