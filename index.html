@@ -929,94 +929,142 @@
       to { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; }
     }
 
-    /* ——— GIFT / TICKETS ——— */
+    /* ——— GIFT / BIGLIETTO UNICO ——— */
     .gift-band {
-      background: linear-gradient(180deg, #ffd8e0 0%, #f0b8c4 45%, #c45c74 100%);
-      padding-bottom: 2rem;
+      background: linear-gradient(180deg, #ffd8e0 0%, #f0b8c4 40%, #c45c74 100%);
+      padding-bottom: 2.5rem;
     }
     .gift-band .section-title,
     .gift-band .section-kicker { color: var(--velvet); }
     .gift-band .section-kicker { color: var(--velvet-mid); }
 
-    .tickets {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.35rem;
-      margin-top: 0.25rem;
-    }
-    @media (min-width: 560px) {
-      .tickets { grid-template-columns: 1fr 1fr; gap: 1.6rem; }
-    }
-
     .tickets-note {
       text-align: center;
-      margin: -1rem auto 1.5rem;
-      max-width: 26rem;
-      font-size: 0.95rem;
-      color: rgba(46, 20, 28, 0.72);
+      margin: -0.75rem auto 1.5rem;
+      max-width: 28rem;
+      font-size: 0.98rem;
+      color: rgba(46, 20, 28, 0.75);
       font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .tickets {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.25rem;
     }
 
     .ticket {
       position: relative;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.15), transparent 40%),
-        linear-gradient(160deg, #fffaf6 0%, #ffe4f0 100%);
-      border-radius: var(--radius-soft);
-      padding: 0;
+      width: min(100%, 34rem);
+      display: grid;
+      grid-template-columns: 1fr;
       text-align: left;
       color: inherit;
-      width: 100%;
       cursor: pointer;
       overflow: hidden;
-      border: 3px solid rgba(219, 39, 119, 0.14);
-      box-shadow:
-        0 16px 36px rgba(80, 20, 40, 0.16),
-        0 2px 0 rgba(255,255,255,0.65) inset;
-      transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
       isolation: isolate;
-      min-height: 17rem;
+      border: none;
+      padding: 0;
+      border-radius: 1.25rem;
+      background: #fffaf6;
+      box-shadow:
+        0 22px 50px rgba(80, 20, 40, 0.22),
+        0 2px 0 rgba(255,255,255,0.7) inset;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
+    }
+    @media (min-width: 640px) {
+      .ticket {
+        grid-template-columns: 1.15fr 0.95fr;
+        min-height: 17.5rem;
+      }
+    }
+
+    .ticket-visual {
+      position: relative;
+      min-height: 11rem;
+      overflow: hidden;
+      background: #3a1520;
+    }
+    @media (min-width: 640px) {
+      .ticket-visual { min-height: 100%; }
     }
     .ticket-photo {
       position: absolute;
       inset: 0;
       background-size: cover;
-      background-position: center top;
-      opacity: 0.9;
-      z-index: 0;
-      transition: transform 0.6s var(--ease-out), opacity 0.35s;
-      mask-image: linear-gradient(180deg, #000 0%, #000 38%, transparent 72%);
-      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 38%, transparent 72%);
+      background-position: center;
+      transition: transform 0.6s var(--ease-out);
     }
-    .ticket:hover .ticket-photo {
-      transform: scale(1.06);
-      opacity: 1;
-    }
-    .ticket-shade {
+    .ticket:hover .ticket-photo,
+    .ticket:focus-visible .ticket-photo { transform: scale(1.05); }
+    .ticket-visual::after {
+      content: "";
       position: absolute;
       inset: 0;
-      z-index: 0;
-      background: linear-gradient(180deg, rgba(255,250,246,0.15) 0%, rgba(255,248,240,0.55) 42%, #fff8f0 68%);
+      background: linear-gradient(180deg, rgba(20,8,12,0.1) 0%, rgba(20,8,12,0.55) 100%);
     }
+    .ticket-visual-badge {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 2;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fffaf6;
+      background: rgba(20, 8, 12, 0.45);
+      backdrop-filter: blur(8px);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,250,246,0.25);
+    }
+
     .ticket-body {
       position: relative;
       z-index: 2;
-      padding: 1.6rem 1.35rem 1.35rem;
+      padding: 1.45rem 1.35rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      background:
+        linear-gradient(160deg, #fffaf6 0%, #fff1f7 100%);
     }
+    @media (min-width: 640px) {
+      .ticket-body {
+        border-left: 2px dashed rgba(190, 24, 93, 0.22);
+        padding: 1.6rem 1.5rem;
+      }
+    }
+
     .ticket::before,
     .ticket::after {
       content: "";
       position: absolute;
-      top: 58%;
-      width: 1.25rem; height: 1.25rem;
-      background: #d87890;
+      width: 1.35rem;
+      height: 1.35rem;
+      background: #c45c74;
       border-radius: 50%;
-      transform: translateY(-50%);
+      z-index: 3;
       box-shadow: inset 0 0 0 999px rgba(0,0,0,0.04);
-      z-index: 2;
     }
-    .ticket::before { left: -0.62rem; }
-    .ticket::after { right: -0.62rem; }
+    @media (max-width: 639px) {
+      .ticket::before,
+      .ticket::after {
+        top: 11rem;
+        transform: translateY(-50%);
+      }
+      .ticket::before { left: -0.67rem; }
+      .ticket::after { right: -0.67rem; }
+    }
+    @media (min-width: 640px) {
+      .ticket::before,
+      .ticket::after {
+        left: 53.5%;
+        transform: translateX(-50%);
+      }
+      .ticket::before { top: -0.67rem; }
+      .ticket::after { bottom: -0.67rem; top: auto; }
+    }
 
     .ticket-foil {
       position: absolute;
@@ -1024,20 +1072,20 @@
       background: linear-gradient(
         115deg,
         transparent 30%,
-        rgba(255, 220, 180, 0.35) 45%,
-        rgba(255,255,255,0.4) 50%,
-        rgba(255, 220, 180, 0.3) 55%,
+        rgba(255, 220, 180, 0.28) 45%,
+        rgba(255,255,255,0.35) 50%,
+        rgba(255, 220, 180, 0.22) 55%,
         transparent 70%
       );
       transform: translateX(-120%);
       transition: transform 0.7s var(--ease-out);
       pointer-events: none;
-      z-index: 1;
+      z-index: 4;
     }
     .ticket:hover,
     .ticket:focus-visible {
-      transform: translateY(-8px) rotate(-1deg);
-      box-shadow: 0 22px 50px rgba(80, 20, 40, 0.28);
+      transform: translateY(-6px);
+      box-shadow: 0 28px 56px rgba(80, 20, 40, 0.28);
       outline: none;
     }
     .ticket:hover .ticket-foil,
@@ -1053,43 +1101,77 @@
       letter-spacing: 0.18em;
       color: var(--ink-soft);
       font-weight: 600;
-      margin-bottom: 0.45rem;
-      position: relative;
-      z-index: 2;
+      margin-bottom: 0.55rem;
     }
     .ticket-title {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: 1.7rem;
+      font-size: clamp(1.7rem, 4vw, 2.15rem);
       color: var(--velvet);
-      line-height: 1.15;
-      position: relative;
-      z-index: 2;
+      line-height: 1.12;
     }
     .ticket-meta {
-      margin-top: 0.6rem;
-      font-size: 0.92rem;
+      margin-top: 0.55rem;
+      font-size: 0.95rem;
       color: var(--ink-soft);
-      position: relative;
-      z-index: 2;
+    }
+    .ticket-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-top: 1.1rem;
+    }
+    .ticket-field span {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(131, 24, 67, 0.55);
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+    .ticket-field strong {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--velvet);
+      font-weight: 600;
     }
     .ticket-stub {
-      margin-top: 1.15rem;
-      padding-top: 0.9rem;
-      border-top: 1px dashed rgba(92, 36, 52, 0.25);
-      font-size: 0.82rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(190, 24, 93, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.86rem;
       color: var(--rose);
       font-weight: 600;
-      letter-spacing: 0.04em;
-      position: relative;
-      z-index: 2;
+      letter-spacing: 0.03em;
+    }
+    .ticket-barcode {
+      width: 4.5rem;
+      height: 1.6rem;
+      background: repeating-linear-gradient(
+        90deg,
+        #3a1520 0 2px,
+        transparent 2px 4px,
+        #3a1520 4px 5px,
+        transparent 5px 7px,
+        #3a1520 7px 10px,
+        transparent 10px 11px
+      );
+      opacity: 0.55;
+      border-radius: 2px;
+      flex-shrink: 0;
     }
 
     /* ——— REVEAL ——— */
     .reveal-section {
       display: none;
       min-height: 100svh;
-      padding: 4.5rem 1.4rem 5rem;
+      padding: 4rem 1.4rem 5rem;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -1103,8 +1185,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 3.5rem;
       animation: reveal-bloom 1s var(--ease-out) both;
+    }
+    .reveal-card {
+      width: min(100%, 36rem);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     @keyframes reveal-bloom {
       from { opacity: 0; transform: scale(0.94); filter: blur(8px); }
@@ -1113,7 +1203,7 @@
 
     .reveal-photo-wrap {
       position: relative;
-      width: min(92vw, 380px);
+      width: min(92vw, 420px);
       margin-bottom: 1.75rem;
       border-radius: 1.1rem;
       overflow: hidden;
@@ -1173,21 +1263,17 @@
     }
 
     .reveal-city {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 700;
-      font-size: clamp(3.4rem, 15vw, 6rem);
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      background: linear-gradient(180deg, #fffaf6 20%, var(--blush) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: none;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25));
+      font-family: var(--font-script);
+      font-style: normal;
+      font-weight: 400;
+      font-size: clamp(3.6rem, 16vw, 5.8rem);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      color: #fffaf6;
+      text-shadow: 0 8px 28px rgba(0,0,0,0.35);
     }
     .reveal-event {
-      margin-top: 0.65rem;
+      margin-top: 0.45rem;
       font-size: clamp(1.25rem, 4vw, 1.7rem);
       font-weight: 500;
       color: var(--gold-bright);
@@ -1200,20 +1286,58 @@
       text-transform: uppercase;
       color: rgba(255, 244, 234, 0.55);
     }
-    .reveal-text {
-      margin: 1.85rem auto 0;
-      max-width: 28rem;
+    .reveal-copy {
+      margin: 1.75rem auto 0;
+      max-width: 32rem;
+      text-align: left;
+    }
+    .reveal-copy p {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: clamp(1.15rem, 3.4vw, 1.4rem);
-      line-height: 1.7;
+      font-size: clamp(1.08rem, 3.2vw, 1.28rem);
+      line-height: 1.75;
+      color: rgba(255, 244, 234, 0.9);
+      margin-bottom: 1rem;
+    }
+    .reveal-copy p:last-child { margin-bottom: 0; }
+    .reveal-perks {
+      list-style: none;
+      margin: 1.5rem auto 0;
+      padding: 1.15rem 1.25rem;
+      width: min(100%, 32rem);
+      text-align: left;
+      border-radius: 1rem;
+      background: rgba(255, 250, 246, 0.08);
+      border: 1px solid rgba(255, 250, 246, 0.16);
+      backdrop-filter: blur(8px);
+    }
+    .reveal-perks li {
+      position: relative;
+      padding-left: 1.35rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.98rem;
+      line-height: 1.45;
       color: rgba(255, 244, 234, 0.88);
     }
+    .reveal-perks li:last-child { margin-bottom: 0; }
+    .reveal-perks li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.45rem;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f9a8d4, #db2777);
+      box-shadow: 0 0 10px rgba(244, 114, 182, 0.55);
+    }
     .reveal-love {
-      margin-top: 1.6rem;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--blush);
+      margin-top: 1.75rem;
+      font-family: var(--font-script);
+      font-size: clamp(1.8rem, 6vw, 2.4rem);
+      font-weight: 400;
+      color: #f9a8d4;
+      line-height: 1.2;
     }
 
     .btn--ghost {
@@ -1382,16 +1506,24 @@
         font-size: 0.9rem;
         padding: 0 0.25rem;
       }
-      .tickets { gap: 1rem; }
       .ticket {
-        min-height: 14.5rem;
-        border-radius: 0.75rem;
+        border-radius: 1rem;
       }
-      .ticket-body { padding: 1.35rem 1.15rem 1.15rem; }
-      .ticket-title { font-size: 1.45rem; }
+      .ticket-body { padding: 1.25rem 1.1rem 1.15rem; }
+      .ticket-title { font-size: 1.55rem; }
+      .ticket-row { gap: 0.7rem; margin-top: 0.95rem; }
       .ticket:hover,
       .ticket:focus-visible {
         transform: none;
+      }
+      .reveal-copy,
+      .reveal-perks {
+        text-align: left;
+        width: 100%;
+      }
+      .reveal-section.is-open {
+        padding-top: 2.5rem;
+        justify-content: flex-start;
       }
 
       .reveal-section {
@@ -1406,15 +1538,13 @@
         border-radius: 0.9rem;
       }
       .reveal-city {
-        font-size: clamp(2.8rem, 16vw, 4rem);
+        font-size: clamp(3.1rem, 17vw, 4.2rem);
       }
       .reveal-event { font-size: 1.2rem; }
-      .reveal-text {
-        font-size: 1.08rem;
-        margin-top: 1.35rem;
-        padding: 0 0.15rem;
+      .reveal-copy p {
+        font-size: 1.05rem;
       }
-      .reveal-love { font-size: 1.15rem; }
+      .reveal-love { font-size: clamp(1.65rem, 7vw, 2.1rem); }
       .btn--ghost {
         width: min(100%, 16rem);
         margin-top: 1.75rem;
@@ -1586,33 +1716,45 @@
     </div>
   </div>
 
-  <!-- 5. Biglietti (solo estetici: qualsiasi tocco → stessa rivelazione) -->
+  <!-- 5. Biglietto unico -->
   <div class="band gift-band" id="regalo" hidden>
     <section class="section section--wide" aria-labelledby="regalo-title">
       <p class="section-kicker reveal">Il momento è arrivato</p>
       <h2 class="section-title reveal" id="regalo-title">Il tuo regalo</h2>
-      <p class="tickets-note reveal">Due biglietti, una sola sorpresa — tocca quello che preferisci</p>
+      <p class="tickets-note reveal">Un solo biglietto, una destinazione speciale. Toccalo per scoprire dove andiamo.</p>
       <div class="tickets reveal" id="tickets">
-        <button type="button" class="ticket" data-ticket="a" aria-label="Apri il regalo">
-          <span class="ticket-photo" data-foto="ticketA" aria-hidden="true"></span>
-          <span class="ticket-shade" aria-hidden="true"></span>
+        <button type="button" class="ticket" id="ticket-unico" aria-label="Apri il tuo biglietto regalo">
           <span class="ticket-foil" aria-hidden="true"></span>
-          <div class="ticket-body">
-            <div class="ticket-label">Biglietto A</div>
-            <div class="ticket-title">Destinazione misteriosa</div>
-            <div class="ticket-meta">Valido per due · Amore incluso</div>
-            <div class="ticket-stub">Tocca per aprire</div>
+          <div class="ticket-visual">
+            <span class="ticket-photo" data-foto="ticketA" aria-hidden="true"></span>
+            <span class="ticket-visual-badge">Boarding pass</span>
           </div>
-        </button>
-        <button type="button" class="ticket" data-ticket="b" aria-label="Apri il regalo">
-          <span class="ticket-photo" data-foto="ticketB" aria-hidden="true"></span>
-          <span class="ticket-shade" aria-hidden="true"></span>
-          <span class="ticket-foil" aria-hidden="true"></span>
           <div class="ticket-body">
-            <div class="ticket-label">Biglietto B</div>
-            <div class="ticket-title">Avventura in arrivo</div>
-            <div class="ticket-meta">Andata · Ritorno · Noi</div>
-            <div class="ticket-stub">Tocca per aprire</div>
+            <div class="ticket-label">Biglietto per due</div>
+            <div class="ticket-title">Destinazione misteriosa</div>
+            <div class="ticket-meta">Valido per noi · Amore incluso</div>
+            <div class="ticket-row">
+              <div class="ticket-field">
+                <span>Passeggeri</span>
+                <strong>Gabry &amp; Boba</strong>
+              </div>
+              <div class="ticket-field">
+                <span>Classe</span>
+                <strong>Forever</strong>
+              </div>
+              <div class="ticket-field">
+                <span>Partenza</span>
+                <strong>Dal cuore</strong>
+              </div>
+              <div class="ticket-field">
+                <span>Arrivo</span>
+                <strong>???</strong>
+              </div>
+            </div>
+            <div class="ticket-stub">
+              <span>Tocca per aprire</span>
+              <span class="ticket-barcode" aria-hidden="true"></span>
+            </div>
           </div>
         </button>
       </div>
@@ -1621,21 +1763,24 @@
 
   <!-- 6. Rivelazione -->
   <section class="reveal-section" id="rivelazione" aria-labelledby="citta-title" aria-live="polite">
-    <div class="reveal-photo-wrap" id="reveal-photo-wrap">
-      <img id="reveal-photo" alt="Napoli" />
-      <span class="reveal-photo-badge">La nostra destinazione</span>
+    <div class="reveal-card">
+      <div class="reveal-photo-wrap" id="reveal-photo-wrap">
+        <img id="reveal-photo" alt="Napoli" />
+        <span class="reveal-photo-badge">La nostra destinazione</span>
+      </div>
+      <h2 class="reveal-city" id="citta-title"></h2>
+      <p class="reveal-event" id="evento-title"></p>
+      <p class="reveal-date" id="evento-data"></p>
+      <div class="reveal-copy" id="evento-copy"></div>
+      <ul class="reveal-perks" id="evento-perks"></ul>
+      <p class="reveal-love" id="evento-amore"></p>
+      <button type="button" class="btn btn--ghost" id="btn-torna">
+        Torna su
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true" style="margin-left:0.4rem">
+          <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
-    <h2 class="reveal-city" id="citta-title"></h2>
-    <p class="reveal-event" id="evento-title"></p>
-    <p class="reveal-date" id="evento-data"></p>
-    <p class="reveal-text" id="evento-testo"></p>
-    <p class="reveal-love" id="evento-amore"></p>
-    <button type="button" class="btn btn--ghost" id="btn-torna">
-      Torna su
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true" style="margin-left:0.4rem">
-        <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
   </section>
 
   <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
@@ -1664,15 +1809,24 @@
         citta: "Napoli",
         evento: "Napoli Comicon",
         dataEvento: "[DA INSERIRE]",
-        frase:
+        paragrafi: [
           "Ti porto a Napoli, al Comicon, insieme a te. Un anno di noi, e il prossimo sarà ancora più bello.",
+          "Voglio regalarti giorni pieni di luci, cosplay, risate e quella magia che solo le fiere sanno creare — e che con te diventa ancora più speciale.",
+          "Cammineremo tra i padiglioni, faremo mille foto, mangeremo qualcosa di buono e torneremo a casa con nuovi ricordi da aggiungere alla nostra storia.",
+        ],
+        perks: [
+          "Viaggio insieme a Napoli",
+          "Ingresso al Napoli Comicon",
+          "Giornate di stand, artisti e sorprese",
+          "Tempo solo nostro, senza fretta",
+        ],
+        chiusura: "Ti amo, Boba. Questo è solo l'inizio del prossimo capitolo.",
       },
       // Foto in assets/ — se un file manca, compare un placeholder elegante
       foto: {
         hero: "assets/cuori.jpg",
         sigillo: "assets/sigillo.jpg",
         ticketA: "assets/napoli-hero.jpg",
-        ticketB: "assets/biglietti-decor.jpg",
         napoli: "assets/napoli.jpg",
         napoliBg: "assets/napoli2.jpg",
       },
@@ -1867,11 +2021,33 @@
     }
 
     function renderRivelazione() {
-      document.getElementById("citta-title").textContent = CONFIG.destinazione.citta;
-      document.getElementById("evento-title").textContent = CONFIG.destinazione.evento;
-      document.getElementById("evento-data").textContent = CONFIG.destinazione.dataEvento;
-      document.getElementById("evento-testo").textContent = CONFIG.destinazione.frase;
-      document.getElementById("evento-amore").textContent = "Ti amo, " + CONFIG.nomeLei + " 💕";
+      const d = CONFIG.destinazione;
+      document.getElementById("citta-title").textContent = d.citta;
+      document.getElementById("evento-title").textContent = d.evento;
+      document.getElementById("evento-data").textContent = d.dataEvento;
+      document.getElementById("evento-amore").textContent =
+        d.chiusura || ("Ti amo, " + CONFIG.nomeLei);
+
+      const copy = document.getElementById("evento-copy");
+      if (copy) {
+        copy.innerHTML = "";
+        (d.paragrafi || []).forEach((testo) => {
+          const p = document.createElement("p");
+          p.textContent = testo;
+          copy.appendChild(p);
+        });
+      }
+
+      const perks = document.getElementById("evento-perks");
+      if (perks) {
+        perks.innerHTML = "";
+        (d.perks || []).forEach((voce) => {
+          const li = document.createElement("li");
+          li.textContent = voce;
+          perks.appendChild(li);
+        });
+        perks.hidden = !(d.perks && d.perks.length);
+      }
 
       const revealSection = document.getElementById("rivelazione");
       const revealImg = document.getElementById("reveal-photo");
@@ -1881,7 +2057,7 @@
         CONFIG.foto.napoli,
         (src) => {
           revealImg.src = src;
-          revealImg.alt = CONFIG.destinazione.citta;
+          revealImg.alt = d.citta;
           if (wrap) wrap.style.display = "";
         },
         () => {
