@@ -203,16 +203,18 @@
     .hero {
       position: relative;
       min-height: 100svh;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 2rem 1.5rem 5rem;
+      padding: 4.5rem 1.5rem 5.5rem;
       overflow: hidden;
       color: var(--white);
       background:
         radial-gradient(ellipse 90% 70% at 50% 110%, rgba(196, 92, 116, 0.45) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 50% at 80% 10%, rgba(255, 201, 168, 0.18) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 15% 20%, rgba(240, 168, 184, 0.2) 0%, transparent 45%),
+        radial-gradient(ellipse 55% 45% at 50% 15%, rgba(255, 201, 168, 0.16) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(240, 168, 184, 0.14) 0%, transparent 55%),
         linear-gradient(168deg, #1f0c12 0%, var(--velvet) 40%, #4a1c2a 78%, #6b3040 100%);
     }
 
@@ -253,21 +255,24 @@
     .hero-orb--1 {
       width: 42vw; height: 42vw; max-width: 340px; max-height: 340px;
       background: #c45c74;
-      top: 8%; left: -8%;
+      top: 6%;
+      left: calc(50% - min(21vw, 170px));
     }
     .hero-orb--2 {
       width: 50vw; height: 50vw; max-width: 420px; max-height: 420px;
       background: #ffb090;
-      bottom: -10%; right: -12%;
+      bottom: -12%;
+      left: calc(50% - min(25vw, 210px));
       animation-delay: -6s;
-      opacity: 0.35;
+      opacity: 0.32;
     }
     .hero-orb--3 {
       width: 28vw; height: 28vw; max-width: 220px; max-height: 220px;
       background: #f0a8b8;
-      top: 40%; left: 55%;
+      top: 42%;
+      left: calc(50% - min(14vw, 110px));
       animation-delay: -3s;
-      opacity: 0.3;
+      opacity: 0.28;
     }
 
     @keyframes orb-drift {
@@ -297,12 +302,20 @@
     .hero-inner {
       position: relative;
       z-index: 2;
-      max-width: 36rem;
+      width: min(100%, 36rem);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 0.5rem;
     }
 
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.65rem;
       font-size: 0.72rem;
       letter-spacing: 0.28em;
@@ -327,16 +340,18 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -54%);
+      transform: translate(-50%, -50%);
       font-family: var(--font-display);
       font-style: italic;
       font-size: clamp(12rem, 42vw, 22rem);
       line-height: 1;
-      color: rgba(255, 255, 255, 0.035);
+      color: rgba(255, 255, 255, 0.04);
       pointer-events: none;
       user-select: none;
       z-index: 1;
       white-space: nowrap;
+      text-align: center;
+      width: 100%;
     }
 
     .hero h1 {
@@ -349,6 +364,8 @@
       margin-top: 1.1rem;
       color: #fffaf6;
       text-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      text-align: center;
     }
     .hero h1 .word {
       display: inline-block;
@@ -367,13 +384,18 @@
       color: rgba(255, 244, 234, 0.72);
       opacity: 0;
       animation: fade-up 1s var(--ease-out) 1.05s forwards;
+      width: 100%;
+      text-align: center;
+      max-width: 22rem;
     }
 
     .scroll-hint {
       position: absolute;
       bottom: 1.75rem;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      width: max-content;
       z-index: 3;
       display: flex;
       flex-direction: column;
@@ -1242,8 +1264,10 @@
       .hero {
         min-height: 100svh;
         min-height: 100dvh;
-        padding: max(1.5rem, env(safe-area-inset-top)) 1.15rem 4.5rem;
-        padding-right: 1.75rem; /* spazio per i progress dots */
+        padding:
+          max(1.5rem, env(safe-area-inset-top))
+          1.5rem
+          4.5rem;
       }
       .hero-eyebrow {
         font-size: 0.65rem;
